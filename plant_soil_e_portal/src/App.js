@@ -28,6 +28,13 @@ import Presentation from "layouts/pages/presentation";
 
 // Material Kit 2 React routes
 import routes from "routes";
+import Home from "layouts/home/Home";
+import PlantDetail from "layouts/plantDetail/PlantDetail";
+import Articles from "layouts/articles/Articles";
+import Article from "layouts/article/Article";
+import Videos from "layouts/videos/Videos";
+import Quizz from "layouts/quizz/Quizz";
+
 
 export default function App() {
   const { pathname } = useLocation();
@@ -56,8 +63,12 @@ export default function App() {
       <CssBaseline />
       <Routes>
         {getRoutes(routes)}
-        <Route path="/presentation" element={<Presentation />} />
-        <Route path="*" element={<Navigate to="/presentation" />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/plantDetail" element={<PlantDetail />} />
+        <Route path="/articles" element={<Articles />}></Route>
+        <Route path="/article" element={<Article />}></Route>
+        <Route path="/videos" element={<Videos />}></Route>
+        <Route path="/quizz" element={<Quizz />}></Route>
       </Routes>
     </ThemeProvider>
   );
