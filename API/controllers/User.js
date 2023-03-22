@@ -7,7 +7,7 @@ module.exports.registerUser = async (req, res, next) => {
     try {
         var user = await User.findOne({userName: req.body.userName});
         if(user){
-            throw(createError(409, 'User name already taken.'))
+            throw(createError(409, 'Username already taken.'))
         }
         user = await User.findOne({email: req.body.email});
         if(user){
@@ -25,7 +25,12 @@ module.exports.registerUser = async (req, res, next) => {
                 token,
             },
             payload: {
-                user: newUser
+                user: {
+                    userId: newUser._id,
+                    userName: newUser.userName,
+                    fullName: newUser.fullName,
+                    email: newUser.email
+                }
             }
         })
     } catch (err) {

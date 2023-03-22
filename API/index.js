@@ -5,9 +5,11 @@ const plantRouter = require('./routes/Plant');
 const articleRouter = require('./routes/Article');
 const quizzRouter = require('./routes/Quizz');
 const videoRouter = require('./routes/Video');
+const cors = require('cors')
 require('dotenv').config();
 
 const app = express();
+app.use(cors());
 
 //Initial connection
 mongoose.connect(process.env.MONGO_URL)
