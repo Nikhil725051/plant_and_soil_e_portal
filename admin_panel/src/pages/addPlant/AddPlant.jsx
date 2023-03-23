@@ -1,8 +1,9 @@
-import { Button, Grid, TextField } from "@mui/material";
+import { Button, CircularProgress, Grid, TextField, Typography } from "@mui/material";
 import { useContext, useState } from "react";
 import Compress from 'compress.js'
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
+import { Box } from "@mui/system";
 
 function AddPlant() {
 
@@ -12,7 +13,9 @@ function AddPlant() {
     const [sunRequirements, setSunRequirements] = useState('');
     const [flowerTime, setFlowerTime] = useState('');
     const [file, setFile] = useState([]);
-    const { user, dispatch } = useContext(AuthContext)
+    const { user, dispatch } = useContext(AuthContext);
+    const [status, setStatus] = useState({status: '', mess: ''});
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -27,6 +30,10 @@ function AddPlant() {
         } catch (err) {
             console.log(err)
         }
+        setStatus({
+            status: 'loading',
+            mess: ''
+        });
         axios.post('http://localhost:8080/plant/addPlant', {
             auth: {
                 authToken: user.user.auth.token
@@ -45,24 +52,32 @@ function AddPlant() {
         }
         )
             .then((response) => {
-                console.log(response.data)
+                console.log(response.data);
+                setStatus({
+                    status: 'success',
+                    mess: 'Plant detail added successfully'
+                });
             })
             .catch((err) => {
                 console.log(err);
+                setStatus({
+                    status: 'failed',
+                    mess: 'Some error occured'
+                });
             })
 
     }
     return (
-        // user.isLoading ?
-        // <Box sx={{
-        //   display: 'flex',
-        //   height: '100vh',
-        //   justifyContent: 'center',
-        //   alignItems: 'center'
-        // }}>
-        //   <CircularProgress />
-        // </Box>
-        // :
+        status.status === 'loading' ?
+        <Box sx={{
+          display: 'flex',
+          height: '100vh',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}>
+          <CircularProgress />
+        </Box>
+        :
         <form
             style={{
                 height: '100vh',
@@ -128,7 +143,7 @@ function AddPlant() {
                 </Grid>
                 <Grid item xs={12} md={6} p={1}>
                     <TextField
-                        inputProps={{ shrink: true }}
+                        InputLabelProps={{ shrink: true }}
                         type='file'
                         fullWidth
                         required
@@ -142,13 +157,13 @@ function AddPlant() {
                         ADD
                     </Button>
                 </Grid>
-                {/* {
-                    user.err
-                    &&
-                    <Grid textAlign={"center"} item xs={12} p={1}>
-                        <Typography color={'error'} variant="subtitle1">{user.err}</Typography>
-                    </Grid>
-                } */}
+                {
+                        status.mess
+                        &&
+                        <Grid textAlign={"center"} item xs={12} p={1}>
+                            <Typography color={status.status === 'success' ? 'success.main' : 'error'} variant="subtitle1">{status.mess}!</Typography>
+                        </Grid>
+                    }
             </Grid>
         </form>
     );

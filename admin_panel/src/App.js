@@ -7,6 +7,8 @@ import Home from './pages/home/home';
 import { useContext } from 'react';
 import { AuthContext } from './context/AuthContext';
 import AddPlant from './pages/addPlant/AddPlant';
+import WriteArticle from './pages/writeArticle/WriteArticle';
+import AddQuizz from './pages/AddQuizz/AddQuizz';
 
 
 
@@ -27,6 +29,8 @@ function App() {
        <>
          <Route exact path='/home' element={<Home />}></Route>
          <Route exact path='/addPlant' element={<AddPlant />}></Route>
+         <Route exact path='/writeArticle' element={<WriteArticle />}></Route>
+         <Route exact path='/addQuizz' element={<AddQuizz />}></Route>
        </>
         
         }

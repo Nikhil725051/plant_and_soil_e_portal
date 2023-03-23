@@ -4,34 +4,34 @@ const {Schema} =  mongoose;
 const plantSchema = new Schema({
     name: {
         type: String,
-        require: true
+        required: true
     },
     imgUrl: {
         type: String,
-        require: true
+        required: true
     },
     description: {
         type: String,
-        require: true
+        required: true
     },
     soilTypes: {
         type: String,
-        require: true
+        required: true
     },
 
     sunRequirements: {
         type: String,
-        require: true
+        required: true
     },
 
     flowerTime: {
         type: String,
-        require: true
+        required: true
     },
 
     addedBy: {
         type: String,
-        require: true
+        required: true
     }
 }, {timestamps: true});
 

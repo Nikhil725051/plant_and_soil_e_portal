@@ -4,29 +4,29 @@ const {Schema} = mongoose;
 const quizzSchema = new Schema({
     question: {
         type: String,
-        require: true,
+        required: true,
         unique: true
     },
     options: {
         type: [new Schema({
             optionNo: {
                 type: Number,
-                require: true
+                required: true
             },
             option: {
                 type: String,
-                require: true
+                required: true
             }
         })],
-        require: true
+        required: true
     },
     answerOption: {
         type: Number,
-        require: true
+        required: true
     },
     createdBy: {
         type: String,
-        require: true
+        required: true
     }
 }, {timestamps: true});
 

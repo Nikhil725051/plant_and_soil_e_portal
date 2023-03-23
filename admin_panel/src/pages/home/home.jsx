@@ -31,9 +31,9 @@ function Home() {
                 What would you like to do today?
             </Typography>
             <Grid sx={{ overflowY: 'auto', paddingY: '5px' }} justifyContent={'center'} gap={2} container>
-                <Card 
-                sx={{ maxWidth: 345 }}
-                onClick={() => navigate('/addPlant')}>
+                <Card
+                    sx={{ maxWidth: 345 }}
+                    onClick={() => navigate('/addPlant')}>
                     <CardActionArea>
                         <CardMedia
                             component="img"
@@ -46,12 +46,14 @@ function Home() {
                                 ADD PLANT
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
-                            Share your knowledge and insights with others by submitting detailed information about specific plants and their care.
+                                Share your knowledge and insights with others by submitting detailed information about specific plants and their care.
                             </Typography>
                         </CardContent>
                     </CardActionArea>
                 </Card>
-                <Card sx={{ maxWidth: 345 }}>
+                <Card
+                    onClick={() => navigate('/writeArticle')}
+                    sx={{ maxWidth: 345 }}>
                     <CardActionArea>
                         <CardMedia
                             component="img"
@@ -64,7 +66,7 @@ function Home() {
                                 WRITE ARTICLE
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
-                            Write an article related to plant and soil management. Share your knowledge and insights with others by submitting your original content on this topic.
+                                Write an article related to plant and soil management. Share your knowledge and insights with others by submitting your original content on this topic.
                             </Typography>
                         </CardContent>
                     </CardActionArea>
@@ -82,12 +84,14 @@ function Home() {
                                 ADD VIDEO
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
-                            Share your knowledge and insights with others through visual media by submitting your original video content on this topic.
+                                Share your knowledge and insights with others through visual media by submitting your original video content on this topic.
                             </Typography>
                         </CardContent>
                     </CardActionArea>
                 </Card>
-                <Card sx={{ maxWidth: 345 }}>
+                <Card
+                    onClick={() => navigate('/addQuizz')}
+                    sx={{ maxWidth: 345 }}>
                     <CardActionArea>
                         <CardMedia
                             component="img"
@@ -100,7 +104,7 @@ function Home() {
                                 ADD QUIZZ
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
-                            Test the knowledge of others and help them learn by submitting your original quiz content on this topic.
+                                Test the knowledge of others and help them learn by submitting your original quiz content on this topic.
                             </Typography>
                         </CardContent>
                     </CardActionArea>

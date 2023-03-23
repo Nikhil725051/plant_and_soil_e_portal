@@ -4,21 +4,21 @@ const { Schema } = mongoose;
 const userSchema = new Schema({
     userName: {
         type: String,
-        require: true,
+        required: true,
         unique: true
     },
     fullName: {
         type: String,
-        require: true
+        required: true
     },
     email: {
         type: String,
-        require: true,
+        required: true,
         unique: true
     },
     password: {
         type: String,
-        require: true
+        required: true
     }
 }, {timestamps: true});
 

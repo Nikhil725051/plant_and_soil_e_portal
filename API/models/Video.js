@@ -4,17 +4,17 @@ const {Schema} = mongoose;
 const videoSchema = new Schema({
     title: {
         type: String,
-        require: true,
+        required: true,
         unique: true
     },
     url: {
         type: String,
-        require: true,
+        required: true,
         unique: true
     },
     addedBy: {
         type: String,
-        require: true
+        required: true
     }
 }, {timestamps: true});
 

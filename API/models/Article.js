@@ -4,19 +4,19 @@ const {Schema} = mongoose;
 const articleSchema = new Schema({
     title: {
         type: String,
-        require: true
+        required: true
     },
     article: {
         type: String,
-        require: true
+        required: true
     },
     imgUrl: {
         type: String,
-        require: true
+        required: true
     },
     postedBy: {
         type: String,
-        require: true
+        required: true
     }
 }, {timestamps: true});
 
