@@ -71,7 +71,9 @@ function Home() {
                         </CardContent>
                     </CardActionArea>
                 </Card>
-                <Card sx={{ maxWidth: 345 }}>
+                <Card
+                onClick={() => navigate('/addVideo')}
+                 sx={{ maxWidth: 345 }}>
                     <CardActionArea>
                         <CardMedia
                             component="img"

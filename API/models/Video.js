@@ -1,3 +1,5 @@
+
+
 const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
@@ -7,11 +9,12 @@ const videoSchema = new Schema({
         required: true,
         unique: true
     },
-    url: {
+    videoLink: {
         type: String,
         required: true,
         unique: true
     },
+   
     addedBy: {
         type: String,
         required: true

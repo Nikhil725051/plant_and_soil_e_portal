@@ -16,7 +16,7 @@ module.exports.getAllVideos = async (req, res, next) => {
 
 module.exports.addVideo = async (req, res, next) => {
     try{
-        const user = await User.findById(req.userId);
+        const user = await User.findById(req.userId);        
         const video = await new Video({...req.body.payload, addedBy: user.userName}).save();
         res.setHeader('Content-Type', 'application/json');
         res.status(200);
