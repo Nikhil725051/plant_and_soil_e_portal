@@ -1,7 +1,7 @@
 import { Box, Button, CircularProgress, Grid, TextField, Typography } from '@mui/material'
 import { useContext, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext, AUTH_FAILED, AUTH_LOADING, AUTH_SUCCESS } from '../../context/AuthContext';
 
 
@@ -101,6 +101,10 @@ const Login = () => {
             <Button fullWidth variant="contained" color="primary" type="submit">
               Login
             </Button>
+          </Grid>
+          <Grid textAlign={"center"} item xs={12} p={1}>
+            <Typography color={'primary'} variant="subtitle1">Don't have an account?</Typography>
+            <Link to={'/signup'}>Create one.</Link>
           </Grid>
           {
             user.err

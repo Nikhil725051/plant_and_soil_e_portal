@@ -69,6 +69,12 @@ function AddQuizz() {
                     status: 'success',
                     mess: 'Quizz added successfully'
                 });
+                setQuestion('');
+                setOption1('');
+                setOption2('');
+                setOption3('');
+                setOption4('');
+                setAnswerOption('');
             })
             .catch((err) => {
                 console.log(err);

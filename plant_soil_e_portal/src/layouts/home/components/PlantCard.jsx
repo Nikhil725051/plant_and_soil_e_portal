@@ -28,11 +28,11 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import MKButton from "components/MKButton";
 
-function PlantCard({ image, title, description }) {
+function PlantCard({ image, title, description, onClick }) {
 
   const navigate = useNavigate()
   return (
-    <Card sx={{width: 300}}>
+    <Card>
       <MKBox position="relative" borderRadius="lg" mx={2} mt={-3}>
         <MKBox
           component="img"
@@ -42,6 +42,7 @@ function PlantCard({ image, title, description }) {
           width="100%"
           position="relative"
           zIndex={1}
+          sx={{height: 250}}
         />
         <MKBox
           borderRadius="lg"
@@ -72,7 +73,7 @@ function PlantCard({ image, title, description }) {
             variant="gradient"
             size="small"
             color="info"
-            onClick={() => navigate('/plantDetail')}
+            onClick={onClick}
           >
             Know more
           </MKButton>

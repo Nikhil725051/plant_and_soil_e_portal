@@ -57,6 +57,11 @@ function AddPlant() {
                     status: 'success',
                     mess: 'Plant detail added successfully'
                 });
+                setName('');
+                setDescription('');
+                setSoilTypes('');
+                setSunRequirements('');
+                setFlowerTime('');
             })
             .catch((err) => {
                 console.log(err);

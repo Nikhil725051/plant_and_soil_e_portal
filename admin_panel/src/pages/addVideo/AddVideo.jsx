@@ -36,6 +36,8 @@ function AddVideo() {
                     status: 'success',
                     mess: 'Video added successfully'
                 });
+                setVideoTitle('');
+                setVideoUrl('');
             })
             .catch((err) => {
                 console.log(err);

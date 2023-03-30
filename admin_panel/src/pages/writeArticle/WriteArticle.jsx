@@ -53,6 +53,8 @@ function WriteArticle() {
                     status: 'success',
                     mess: 'Article added successfully'
                 });
+                setTitle('');
+                setValue('');
             })
             .catch((err) => {
                 console.log(err);

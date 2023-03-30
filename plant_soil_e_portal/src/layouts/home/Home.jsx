@@ -34,8 +34,31 @@ import routes from "routes";
 
 import MKBadge from "components/MKBadge";
 import PlantCard from "./components/PlantCard";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function Home() {
+
+    const [allPlants, setAllPlants] = useState([]);
+
+    const truncate = (str, max = 10) => {
+        const array = str.trim().split(' ');
+        const ellipsis = array.length > max ? '...' : '';
+        return array.slice(0, max).join(' ') + ellipsis;
+    };
+
+    useEffect(() => {
+        axios.get('http://localhost:8080/plant/fetchPlants')
+        .then((response) => {
+            if(response.statusText === 'OK'){
+                console.log(response.data.payload);
+                setAllPlants(response.data.payload);
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+    }, [])
     return (
         <>
             <DefaultNavbar
@@ -124,34 +147,21 @@ function Home() {
                     </Grid>
                 </Container>
                 <Grid container gap={6} justifyContent='center'>
-                    <Grid item xs={12} md={3}>
-                        <PlantCard
-                         image="https://cdn.pixabay.com/photo/2021/08/18/11/55/coneflowers-6555363_960_720.jpg"
-                         title="Cone flower"
-                         description="Coneflowers are popular perennials with good reason."
-                         ></PlantCard>
-                    </Grid>
-                    <Grid item xs={12} md={3}>
-                        <PlantCard
-                         image="https://cdn.pixabay.com/photo/2016/12/05/16/46/pine-1884335_960_720.jpg"
-                         title="Cone flower"
-                         description="Coneflowers are popular perennials with good reason."
-                         ></PlantCard>
-                    </Grid>
-                    <Grid item xs={12} md={3}>
-                        <PlantCard
-                         image="https://cdn.pixabay.com/photo/2016/11/02/13/01/winter-1791370_960_720.jpg"
-                         title="Cone flower"
-                         description="Coneflowers are popular perennials with good reason."
-                         ></PlantCard>
-                    </Grid>
-                    <Grid item xs={12} md={3}>
-                        <PlantCard
-                         image="https://cdn.pixabay.com/photo/2013/06/14/18/50/flowers-139356_960_720.jpg"
-                         title="Cone flower"
-                         description="Coneflowers are popular perennials with good reason."
-                         ></PlantCard>
-                    </Grid>
+                  {
+                    allPlants.map((plant) => {
+                        return(
+                            <Grid item xs={12} md={3}>
+                            <PlantCard
+                             image={plant.imgUrl}
+                             title={plant.name}
+                             description= {truncate(plant.description)}
+                             onClick={() => navigate('/plantDetail', {state: plant})}
+                             ></PlantCard>
+                        </Grid>
+                        );
+                    })
+                  }
+                    
                 </Grid>
 
             </Card>

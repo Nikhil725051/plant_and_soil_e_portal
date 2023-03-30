@@ -2,7 +2,7 @@ import { Button, CircularProgress, Grid, TextField, Typography } from '@mui/mate
 import { Box } from '@mui/system';
 import axios from 'axios';
 import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link ,useNavigate } from 'react-router-dom';
 import { AuthContext, AUTH_FAILED, AUTH_LOADING, AUTH_SUCCESS } from '../../context/AuthContext';
 
 
@@ -15,7 +15,7 @@ const Signup = () => {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
- 
+
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
@@ -35,14 +35,14 @@ const Signup = () => {
           type: AUTH_SUCCESS,
           payload: response.data
         })
-        navigate('/home', {state: response.data});
+        navigate('/home', { state: response.data });
       })
       .catch((err) => {
         dispatch({
           type: AUTH_FAILED,
           payload: err?.response?.data?.message
         })
-       
+
       })
   };
 
@@ -111,6 +111,10 @@ const Signup = () => {
             <Button fullWidth variant="contained" color="primary" type="submit">
               Sign Up
             </Button>
+          </Grid>
+          <Grid textAlign={"center"} item xs={12} p={1}>
+            <Typography color={'primary'} variant="subtitle1">Already have an account?</Typography>
+            <Link to={'/signin'}>Sign in</Link>
           </Grid>
           {
             user.err
