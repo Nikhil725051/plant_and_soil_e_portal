@@ -5,7 +5,7 @@ import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 import { Box } from "@mui/system";
 
-function AddQuizz() {
+function AddQuiz() {
 
     const [question, setQuestion] = useState('');
     const [option1, setOption1] = useState('');
@@ -35,7 +35,7 @@ function AddQuizz() {
             status: 'loading',
             mess: ''
         });
-        axios.post('http://localhost:8080/quizz/addQuestion', {
+        axios.post('http://localhost:8080/quiz/addQuestion', {
             auth: {
                 authToken: user.user.auth.token
             },
@@ -67,7 +67,7 @@ function AddQuizz() {
                 console.log(response.data);
                 setStatus({
                     status: 'success',
-                    mess: 'Quizz added successfully'
+                    mess: 'Quiz added successfully'
                 });
                 setQuestion('');
                 setOption1('');
@@ -187,4 +187,4 @@ function AddQuizz() {
     );
 }
 
-export default AddQuizz;
+export default AddQuiz;

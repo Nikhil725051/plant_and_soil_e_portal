@@ -4,11 +4,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function Plants() {
+function Videos() {
 
     const navigate = useNavigate();
 
-    const [allPlants, setAllPlants] = useState([]);
+    const [allVideos, setAllVideos] = useState([]);
 
     const truncate = (str, max = 10) => {
         const array = str.trim().split(' ');
@@ -16,11 +16,11 @@ function Plants() {
         return array.slice(0, max).join(' ') + ellipsis;
     };
     useEffect(() => {
-        axios.get('http://localhost:8080/plant/fetchPlants')
+        axios.get('http://localhost:8080/video/getVideos')
             .then((response) => {
                 if (response.statusText === 'OK') {
                     console.log(response.data.payload);
-                    setAllPlants(response.data.payload);
+                    setAllVideos(response.data.payload);
                 }
             })
             .catch((err) => {
@@ -44,31 +44,25 @@ function Plants() {
                 gap={3}
                 flexWrap='wrap'>
                 {
-                    allPlants.map((plant, i) => {
+                    allVideos.map((video, i) => {
                         return (
                             <Card
                                 key={i}
                                 sx={{ maxWidth: 345 }}>
                                 <CardMedia
+                                    component={'iframe'}
                                     sx={{ height: 200 }}
-                                    image={plant.imgUrl}
-                                    title="green iguana"
+                                    src={video.videoLink}
+                                    allowFullScreen
+
                                 />
                                 <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">
-                                        {plant.name}
+                                    <Typography fontWeight={300} fontSize={'1rem'} gutterBottom variant="h6" component="div">
+                                        {video.title}
                                     </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        {truncate(plant.description)}
-                                    </Typography>
+
                                 </CardContent>
-                                <CardActions>
-                                    <Button
-                                        onClick={() => navigate('/plantDetail', { state: plant })}
-                                        size="small">
-                                        Learn More
-                                    </Button>
-                                </CardActions>
+
                             </Card>
                         );
                     })
@@ -78,4 +72,4 @@ function Plants() {
     );
 }
 
-export default Plants;
+export default Videos;

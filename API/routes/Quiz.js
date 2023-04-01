@@ -1,5 +1,5 @@
 const express = require('express');
-const { getAllQuestions, addQuestion } = require('../controllers/Quizz');
+const { getAllQuestions, addQuestion } = require('../controllers/Quiz');
 const router = express.Router();
 const verifyUser = require('../utils/verify')
 

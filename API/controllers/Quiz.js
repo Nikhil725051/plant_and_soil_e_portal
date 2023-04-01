@@ -1,9 +1,9 @@
-const Quizz = require("../models/Quizz");
+const Quiz = require("../models/Quiz");
 const User = require("../models/User");
 
 module.exports.getAllQuestions = async (req, res, next) => {
     try{
-        const allQuestions = await Quizz.find();
+        const allQuestions = await Quiz.find();
         res.setHeader('Content-Type', 'application/json');
         res.status(200);
         res.json({
@@ -17,7 +17,7 @@ module.exports.getAllQuestions = async (req, res, next) => {
 module.exports.addQuestion = async (req, res, next) => {
     try{
         const user = await User.findById(req.userId);
-        const question = await new Quizz({...req.body.payload, createdBy: user.userName}).save();
+        const question = await new Quiz({...req.body.payload, createdBy: user.userName}).save();
         res.setHeader('Content-Type', 'application/json');
         res.status(200);
         res.json({

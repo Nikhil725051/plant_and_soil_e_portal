@@ -92,7 +92,7 @@ function Home() {
                     </CardActionArea>
                 </Card>
                 <Card
-                    onClick={() => navigate('/addQuizz')}
+                    onClick={() => navigate('/addQuiz')}
                     sx={{ maxWidth: 345 }}>
                     <CardActionArea>
                         <CardMedia
@@ -103,7 +103,7 @@ function Home() {
                         />
                         <CardContent>
                             <Typography gutterBottom variant="h5" component="div">
-                                ADD QUIZZ
+                                ADD QUIZ
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
                                 Test the knowledge of others and help them learn by submitting your original quiz content on this topic.

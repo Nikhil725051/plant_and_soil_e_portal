@@ -49,7 +49,13 @@ function Navbar(props) {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar component="nav">
+      <AppBar
+        sx={{
+          backgroundColor: 'rgba(255, 255, 255, 0.2)',
+          backdropFilter: 'blur(50px)',
+          boxShadow: 'none',
+        }}
+        component="nav">
         <Toolbar>
           <IconButton
             color="inherit"
@@ -92,7 +98,7 @@ function Navbar(props) {
         >
           {drawer}
         </Drawer>
-      </Box>     
+      </Box>
     </Box>
   );
 }

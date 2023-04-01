@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const userRouter = require('./routes/User');
 const plantRouter = require('./routes/Plant');
 const articleRouter = require('./routes/Article');
-const quizzRouter = require('./routes/Quizz');
+const quizRouter = require('./routes/Quiz');
 const videoRouter = require('./routes/Video');
 const cors = require('cors')
 require('dotenv').config();
@@ -35,7 +35,7 @@ app.use(express.json({limit: 52428800}));
 app.use('/auth', userRouter);
 app.use('/plant', plantRouter);
 app.use('/article', articleRouter);
-app.use('/quizz', quizzRouter);
+app.use('/quiz', quizRouter);
 app.use('/video', videoRouter);
 
 app.use((err, req, res, next) => {

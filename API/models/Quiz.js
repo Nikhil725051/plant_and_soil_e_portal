@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
-const quizzSchema = new Schema({
+const quizSchema = new Schema({
     question: {
         type: String,
         required: true,
@@ -30,4 +30,4 @@ const quizzSchema = new Schema({
     }
 }, {timestamps: true});
 
-module.exports = mongoose.model('Quizz', quizzSchema);
+module.exports = mongoose.model('Quiz', quizSchema);

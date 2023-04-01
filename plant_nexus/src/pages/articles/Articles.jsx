@@ -1,14 +1,15 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
+
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function Plants() {
+function Articles() {
 
     const navigate = useNavigate();
 
-    const [allPlants, setAllPlants] = useState([]);
+    const [allArticles, setAllArticles] = useState([]);
 
     const truncate = (str, max = 10) => {
         const array = str.trim().split(' ');
@@ -16,11 +17,11 @@ function Plants() {
         return array.slice(0, max).join(' ') + ellipsis;
     };
     useEffect(() => {
-        axios.get('http://localhost:8080/plant/fetchPlants')
+        axios.get('http://localhost:8080/article/fetchArticles')
             .then((response) => {
                 if (response.statusText === 'OK') {
                     console.log(response.data.payload);
-                    setAllPlants(response.data.payload);
+                    setAllArticles(response.data.payload);
                 }
             })
             .catch((err) => {
@@ -44,29 +45,26 @@ function Plants() {
                 gap={3}
                 flexWrap='wrap'>
                 {
-                    allPlants.map((plant, i) => {
+                    allArticles.map((article, i) => {
                         return (
                             <Card
                                 key={i}
                                 sx={{ maxWidth: 345 }}>
                                 <CardMedia
                                     sx={{ height: 200 }}
-                                    image={plant.imgUrl}
+                                    image={article.imgUrl}
                                     title="green iguana"
                                 />
                                 <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">
-                                        {plant.name}
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        {truncate(plant.description)}
+                                    <Typography fontWeight={300} fontSize={'1rem'} gutterBottom variant="h6" component="div">
+                                        {article.title}
                                     </Typography>
                                 </CardContent>
                                 <CardActions>
                                     <Button
-                                        onClick={() => navigate('/plantDetail', { state: plant })}
+                                        onClick={() => navigate('/articles/article', { state: article })}
                                         size="small">
-                                        Learn More
+                                        Read More
                                     </Button>
                                 </CardActions>
                             </Card>
@@ -78,4 +76,4 @@ function Plants() {
     );
 }
 
-export default Plants;
+export default Articles;
