@@ -10,6 +10,8 @@ import AddPlant from './pages/addPlant/AddPlant';
 import WriteArticle from './pages/writeArticle/WriteArticle';
 import AddQuiz from './pages/addQuiz/AddQuiz';
 import AddVideo from './pages/addVideo/AddVideo';
+import Navbar from './components/Navbar';
+import {Box, Typography} from '@mui/material'
 
 
 
@@ -20,23 +22,26 @@ function App() {
 
   return (
     <BrowserRouter>
+      {user.user
+        &&
+        <Navbar />}
       <Routes>
         <Route exact path='/signup' element={<Signup />}></Route>
         <Route exact path='/login' element={<Login />}></Route>
-        <Route exact path='*' element={<Navigate to={user.user ? '/home' : '/login'}/>}></Route>
-        
+        <Route exact path='*' element={<Navigate to={user.user ? '/home' : '/login'} />}></Route>
+
         {user.user
-        &&
-       <>
-         <Route exact path='/home' element={<Home />}></Route>
-         <Route exact path='/addPlant' element={<AddPlant />}></Route>
-         <Route exact path='/writeArticle' element={<WriteArticle />}></Route>
-         <Route exact path='/addQuiz' element={<AddQuiz />}></Route>
-         <Route exact path='/addVideo' element={<AddVideo />}></Route>
-       </>
-        
+          &&
+          <>
+            <Route exact path='/home' element={<Home />}></Route>
+            <Route exact path='/addPlant' element={<AddPlant />}></Route>
+            <Route exact path='/writeArticle' element={<WriteArticle />}></Route>
+            <Route exact path='/addQuiz' element={<AddQuiz />}></Route>
+            <Route exact path='/addVideo' element={<AddVideo />}></Route>
+          </>
+
         }
-      </Routes>
+      </Routes>      
     </BrowserRouter>
   );
 }

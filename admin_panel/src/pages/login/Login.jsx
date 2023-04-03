@@ -1,4 +1,12 @@
-import { Box, Button, CircularProgress, Grid, TextField, Typography } from '@mui/material'
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Grid, TextField,
+  Typography,
+  useTheme,
+  useMediaQuery
+} from '@mui/material'
 import { useContext, useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
@@ -15,6 +23,8 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const theme = useTheme();
+  const isSmallerScreen = useMediaQuery(theme.breakpoints.down('sm'))
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -32,7 +42,7 @@ const Login = () => {
         dispatch({
           type: AUTH_SUCCESS,
           payload: response.data
-        })
+        });
         navigate('/home', { state: response.data });
       })
       .catch((err) => {
@@ -57,17 +67,30 @@ const Login = () => {
       :
       <form
         style={{
-          height: '100vh',
+          paddingTop: 200,
           width: '100vw',
-
           display: 'flex',
-
+          flexWrap: 'wrap',
           alignItems: 'center',
           justifyContent: 'center'
         }}
 
         onSubmit={handleSubmit}>
-        <Grid sx={{ width: '30%' }} container >
+        <Box sx={{ width: '100%' }}>
+          <Typography
+            textAlign={'center'}
+            mb={1}
+            variant="h5">
+            Welcome to PlantNexus Admin Panel
+          </Typography>
+          <Typography
+            textAlign={'center'}
+            mb={5}
+            variant="subtitle1">
+            Please login to continue.
+          </Typography>
+        </Box>
+        <Grid sx={{ width: isSmallerScreen ? '90%' : '30%' }} container >
           {/* <Grid item xs={12} md={6} p={1}>
           <TextField
             fullWidth

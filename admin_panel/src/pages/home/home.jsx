@@ -16,10 +16,9 @@ function Home() {
             sx={{
                 display: 'flex',
                 flexDirection: 'column',
-                height: '100vh',
                 justifyContent: 'center',
                 alignItems: 'center',
-
+                marginTop: 20
             }}
         >
             <Typography
@@ -30,7 +29,7 @@ function Home() {
                 Hi, {user.user?.payload.user.fullName}, <br />
                 What would you like to do today?
             </Typography>
-            <Grid sx={{ overflowY: 'auto', paddingY: '5px' }} justifyContent={'center'} gap={2} container>
+            <Grid justifyContent={'center'} gap={2} container>
                 <Card
                     sx={{ maxWidth: 345 }}
                     onClick={() => navigate('/addPlant')}>
@@ -72,8 +71,8 @@ function Home() {
                     </CardActionArea>
                 </Card>
                 <Card
-                onClick={() => navigate('/addVideo')}
-                 sx={{ maxWidth: 345 }}>
+                    onClick={() => navigate('/addVideo')}
+                    sx={{ maxWidth: 345 }}>
                     <CardActionArea>
                         <CardMedia
                             component="img"

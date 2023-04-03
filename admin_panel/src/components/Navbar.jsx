@@ -15,24 +15,30 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import { AUTH_SIGN_OUT, AuthContext } from '../context/AuthContext';
+import { useContext } from 'react';
 
 const drawerWidth = 240;
 const navItems = [
   {
-    name: 'Plants',
-    route: '/plants'
+    name: 'Home',
+    route: '/home'
   },
   {
-    name: 'Articles',
-    route: '/articles'
+    name: 'Plant',
+    route: '/addPlant'
   },
   {
-    name: 'Videos',
-    route: '/videos'
+    name: 'Article',
+    route: '/writeArticle'
   },
   {
-    name: 'Quizzes',
-    route: '/quizzes'
+    name: 'Video',
+    route: '/addVideo'
+  },
+  {
+    name: 'Quiz',
+    route: '/addQuiz'
   }
 ];
 
@@ -40,10 +46,20 @@ function Navbar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const navigate = useNavigate();
+  const { user, dispatch } = useContext(AuthContext)
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
+
+  const handleSignOut = () => {
+    localStorage.removeItem('user')
+    dispatch({
+      type: AUTH_SIGN_OUT,
+      payload: null
+    });
+    navigate('/login')
+  }
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
@@ -59,6 +75,11 @@ function Navbar(props) {
             </ListItemButton>
           </ListItem>
         ))}
+         <ListItem disablePadding>
+            <ListItemButton sx={{ textAlign: 'center' }}>
+              <ListItemText onClick={() => handleSignOut()} primary={'Sign Out'} />
+            </ListItemButton>
+          </ListItem>
       </List>
     </Box>
   );
@@ -70,12 +91,12 @@ function Navbar(props) {
       <CssBaseline />
       <AppBar
       
-        sx={{
-          backgroundColor: 'rgba(255, 255, 255, 0.2)',
-          backdropFilter: 'blur(50px)',
-          boxShadow: 'none',
+        // sx={{
+        //   backgroundColor: 'rgba(255, 255, 255, 0.2)',
+        //   backdropFilter: 'blur(50px)',
+        //   boxShadow: 'none',
           
-        }}
+        // }}
         component="nav">
         <Toolbar>
           <IconButton
@@ -101,6 +122,9 @@ function Navbar(props) {
                 {item.name}
               </Button>
             ))}
+            <Button onClick={() => handleSignOut()} sx={{ color: '#fff', fontWeight: 300 }}>
+                Sign Out
+              </Button>
           </Box>
         </Toolbar>
       </AppBar>

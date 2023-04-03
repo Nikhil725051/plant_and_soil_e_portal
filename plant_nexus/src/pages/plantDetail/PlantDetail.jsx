@@ -50,7 +50,7 @@ function PlantDetail() {
                             {location.state?.soilTypes}
                         </Typography>
                     </Grid>
-                    <Grid mt={2} item xs={12} >
+                    <Grid mt={2} item xs={12} md={6}>
                         <Typography variant="subtitle2" component="div">
                             Sun Requirements
                         </Typography>
@@ -58,7 +58,7 @@ function PlantDetail() {
                             {location.state?.sunRequirements}
                         </Typography>
                     </Grid>
-                    <Grid mt={2} item xs={12} >
+                    <Grid mt={2} item xs={12} md={6}>
                         <Typography variant="subtitle2" component="div">
                             Flower Time
                         </Typography>

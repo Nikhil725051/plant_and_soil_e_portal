@@ -5,6 +5,7 @@ export const AuthContext = createContext();
 export const AUTH_LOADING = 'AUTH_LOADING';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_FAILED = 'AUTH_FAILED';
+export const AUTH_SIGN_OUT = 'AUTH_SIGN_OUT'
 
 
 function userReducer(state, action) {
@@ -13,6 +14,9 @@ function userReducer(state, action) {
             return { ...state, isLoading: true }
         }
         case AUTH_SUCCESS: {
+            return { ...state, isLoading: false, user: action.payload }
+        }
+        case AUTH_SIGN_OUT: {
             return { ...state, isLoading: false, user: action.payload }
         }
         case AUTH_FAILED: {
