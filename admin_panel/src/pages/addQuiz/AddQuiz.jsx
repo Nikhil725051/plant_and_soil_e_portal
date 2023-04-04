@@ -35,7 +35,7 @@ function AddQuiz() {
             status: 'loading',
             mess: ''
         });
-        axios.post('http://localhost:8080/quiz/addQuestion', {
+        axios.post(process.env.REACT_APP_BASE_URL+'/quiz/addQuestion', {
             auth: {
                 authToken: user.user.auth.token
             },

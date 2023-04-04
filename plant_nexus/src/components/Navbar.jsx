@@ -52,8 +52,8 @@ function Navbar(props) {
       </Typography>
       <Divider />
       <List>
-        {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
+        {navItems.map((item, i) => (
+          <ListItem key={i} disablePadding>
             <ListItemButton sx={{ textAlign: 'center' }}>
               <ListItemText onClick={() => navigate(item.route)} primary={item.name} />
             </ListItemButton>
@@ -96,8 +96,8 @@ function Navbar(props) {
             PlantNexus
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            {navItems.map((item) => (
-              <Button onClick={() => navigate(item.route)} key={item} sx={{ color: '#fff', fontWeight: 300 }}>
+            {navItems.map((item, i) => (
+              <Button onClick={() => navigate(item.route)} key={i} sx={{ color: '#fff', fontWeight: 300 }}>
                 {item.name}
               </Button>
             ))}

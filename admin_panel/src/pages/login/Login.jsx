@@ -31,7 +31,7 @@ const Login = () => {
     dispatch({
       type: AUTH_LOADING
     })
-    axios.post('http://localhost:8080/auth/login', {
+    axios.post(process.env.REACT_APP_BASE_URL+'/auth/login', {
       userName: username,
       fullName: fullName,
       email: email,

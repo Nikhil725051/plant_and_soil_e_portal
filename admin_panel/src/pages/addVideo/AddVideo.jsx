@@ -20,7 +20,7 @@ function AddVideo() {
             status: 'loading',
             mess: ''
         });
-        axios.post('http://localhost:8080/video/addVideo', {
+        axios.post(process.env.REACT_APP_BASE_URL+'/video/addVideo', {
             auth: {
                 authToken: user.user.auth.token
             },

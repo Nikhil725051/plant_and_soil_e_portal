@@ -33,7 +33,7 @@ function WriteArticle() {
             status: 'loading',
             mess: ''
         });
-        axios.post('http://localhost:8080/article/addArticle', {
+        axios.post(process.env.REACT_APP_BASE_URL+'/article/addArticle', {
             auth: {
                 authToken: user.user.auth.token
             },

@@ -34,7 +34,7 @@ function AddPlant() {
             status: 'loading',
             mess: ''
         });
-        axios.post('http://localhost:8080/plant/addPlant', {
+        axios.post(process.env.REACT_APP_BASE_URL+'/plant/addPlant', {
             auth: {
                 authToken: user.user.auth.token
             },

@@ -1,4 +1,4 @@
-import { Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
+import { Button, Card, CardActions, CardContent, CardMedia, CircularProgress, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
 
@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 function Articles() {
 
     const navigate = useNavigate();
+    const [isLoading, setLoading] = useState(false);
 
     const [allArticles, setAllArticles] = useState([]);
 
@@ -17,10 +18,12 @@ function Articles() {
         return array.slice(0, max).join(' ') + ellipsis;
     };
     useEffect(() => {
-        axios.get('http://localhost:8080/article/fetchArticles')
+        setLoading(true);
+        axios.get(process.env.REACT_APP_BASE_URL + '/article/fetchArticles')
             .then((response) => {
-                if (response.statusText === 'OK') {
+                if (response.statusText === 'OK' || response.status === 200) {
                     console.log(response.data.payload);
+                    setLoading(false);
                     setAllArticles(response.data.payload);
                 }
             })
@@ -29,15 +32,19 @@ function Articles() {
             })
     }, [])
     return (
-        <>
-            {/* <Box textAlign='center' my={5}>
-             <Typography fontSize={'2rem'} textTransform={'uppercase'} variant="h3" color={'green'} fontWeight={600} >
-                 Explore the Diversity of Plants
-             </Typography>
-             <Typography variant="subtitle1" color="grey" fontWeight={800} fontSize='1rem'>
-                 Discover a diverse collection of plants, each with unique features and care requirements.
-             </Typography>
-           </Box> */}
+       
+            isLoading === true
+            ?
+            <Box
+                sx={{
+                    display: 'flex',
+                    height: '35vh',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                }}>
+                <CircularProgress />
+            </Box>
+            :
             <Box
                 justifyContent={'center'}
                 my={8}
@@ -49,7 +56,7 @@ function Articles() {
                         return (
                             <Card
                                 key={i}
-                                sx={{ maxWidth: 345 }}>
+                                sx={{ maxWidth: 300 }}>
                                 <CardMedia
                                     sx={{ height: 200 }}
                                     image={article.imgUrl}
@@ -72,7 +79,7 @@ function Articles() {
                     })
                 }
             </Box>
-        </>
+        
     );
 }
 

@@ -33,7 +33,7 @@ const Signup = () => {
     dispatch({
       type: AUTH_LOADING
     })
-    axios.post('http://localhost:8080/auth/register', {
+    axios.post(process.env.REACT_APP_BASE_URL+'/auth/register', {
       userName: username,
       fullName: fullName,
       email: email,
